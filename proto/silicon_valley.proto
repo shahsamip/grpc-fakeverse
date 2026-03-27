@@ -1,0 +1,164 @@
+syntax = "proto3";
+
+package fakeverse.silicon_valley;
+
+message ListRequest {
+  int32 page_size = 1;
+  int32 page = 2;
+  optional int32 seed = 3;
+}
+
+message GetByIdRequest {
+  int32 id = 1;
+}
+
+service SiliconValley {
+  rpc ListStartups (ListRequest) returns (ListStartupsResponse);
+  rpc GetStartup (GetByIdRequest) returns (Startup);
+  rpc ListEmployees (ListRequest) returns (ListEmployeesResponse);
+  rpc GetEmployee (GetByIdRequest) returns (Employee);
+  rpc ListInvestors (ListRequest) returns (ListInvestorsResponse);
+  rpc GetInvestor (GetByIdRequest) returns (Investor);
+  rpc ListPivots (ListRequest) returns (ListPivotsResponse);
+  rpc GetPivot (GetByIdRequest) returns (Pivot);
+  rpc ListProducts (ListRequest) returns (ListProductsResponse);
+  rpc GetProduct (GetByIdRequest) returns (Product);
+  rpc ListStandups (ListRequest) returns (ListStandupsResponse);
+  rpc GetStandup (GetByIdRequest) returns (Standup);
+}
+
+// --- Startups ---
+
+message Startup {
+  int32 id = 1;
+  string name = 2;
+  string tagline = 3;
+  string disrupting = 4;
+  string founded = 5;
+  int32 employees = 6;
+  string valuation = 7;
+  int32 runway_months = 8;
+  int32 pivot_count = 9;
+  int32 synergy_score = 10;
+  repeated string tech_stack = 11;
+  string current_status = 12;
+  string office = 13;
+  string last_pivot_reason = 14;
+  string investors = 15;
+}
+
+message ListStartupsResponse {
+  repeated Startup items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Employees ---
+
+message Employee {
+  int32 id = 1;
+  string name = 2;
+  string title = 3;
+  string startup = 4;
+  string equity = 5;
+  string salary = 6;
+  int32 ping_pong_rank = 7;
+  string kombucha_preference = 8;
+  int32 hours_in_meetings_per_day = 9;
+  double actual_work_hours_per_day = 10;
+  int32 linkedin_connections = 11;
+  string last_promotion_reason = 12;
+  string wfh_setup = 13;
+}
+
+message ListEmployeesResponse {
+  repeated Employee items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Investors ---
+
+message Investor {
+  int32 id = 1;
+  string name = 2;
+  string fund = 3;
+  string aum = 4;
+  int32 portfolio_companies = 5;
+  int32 unicorns_created = 6;
+  int32 checks_written_today = 7;
+  repeated string favorite_buzzwords = 8;
+  string currently_disrupting = 9;
+  string preferred_pitch_length = 10;
+  string out_of_office = 11;
+}
+
+message ListInvestorsResponse {
+  repeated Investor items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Pivots ---
+
+message Pivot {
+  int32 id = 1;
+  string startup = 2;
+  string from = 3;
+  string to = 4;
+  string reason = 5;
+  string announced_via = 6;
+  int32 days_since_last_pivot = 7;
+  string synergy_increase = 8;
+  int32 users_lost = 9;
+  string team_reaction = 10;
+}
+
+message ListPivotsResponse {
+  repeated Pivot items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Products ---
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+  string tagline = 3;
+  string problem_statement = 4;
+  repeated string tech = 5;
+  string market_size = 6;
+  string mvp_status = 7;
+  string app_store_rating = 8;
+  int32 waitlist_signups = 9;
+  int32 paying_customers = 10;
+  string monthly_recurring_revenue = 11;
+  string competitors = 12;
+}
+
+message ListProductsResponse {
+  repeated Product items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Standups ---
+
+message Standup {
+  int32 id = 1;
+  string employee = 2;
+  string title = 3;
+  string yesterday = 4;
+  string today = 5;
+  string blockers = 6;
+  string actually_did_yesterday = 7;
+  string zoom_background = 8;
+  string attendance = 9;
+}
+
+message ListStandupsResponse {
+  repeated Standup items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package fakeverse.common;
+
+message ListRequest {
+  int32 page_size = 1;    // 1-100, default 10
+  int32 page = 2;         // 1-based, default 1
+  optional int32 seed = 3; // deterministic seeding
+}
+
+message GetByIdRequest {
+  int32 id = 1;
+}

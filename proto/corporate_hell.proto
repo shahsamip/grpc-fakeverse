@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package fakeverse.corporate_hell;
+
+message ListRequest {
+  int32 page_size = 1;
+  int32 page = 2;
+  optional int32 seed = 3;
+}
+
+message GetByIdRequest {
+  int32 id = 1;
+}
+
+service CorporateHell {
+  rpc ListMeetings (ListRequest) returns (ListMeetingsResponse);
+  rpc GetMeeting (GetByIdRequest) returns (Meeting);
+  rpc ListEmails (ListRequest) returns (ListEmailsResponse);
+  rpc GetEmail (GetByIdRequest) returns (Email);
+  rpc ListOkrs (ListRequest) returns (ListOkrsResponse);
+  rpc GetOkr (GetByIdRequest) returns (Okr);
+  rpc ListEmployees (ListRequest) returns (ListEmployeesResponse);
+  rpc GetEmployee (GetByIdRequest) returns (CorporateEmployee);
+  rpc ListExpenses (ListRequest) returns (ListExpensesResponse);
+  rpc GetExpense (GetByIdRequest) returns (Expense);
+}
+
+// --- Meetings ---
+
+message Meeting {
+  int32 id = 1;
+  string title = 2;
+  string organizer = 3;
+  int32 attendees_invited = 4;
+  int32 attendees_who_knew_why = 5;
+  int32 duration_minutes = 6;
+  bool could_have_been_email = 7;
+  int32 decisions_made = 8;
+  repeated string action_items = 9;
+  int32 follow_up_meetings_scheduled = 10;
+  bool someone_joined_late = 11;
+  bool someone_left_early = 12;
+  bool recurring = 13;
+  string recurring_reason = 14;
+}
+
+message ListMeetingsResponse {
+  repeated Meeting items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Emails ---
+
+message Email {
+  int32 id = 1;
+  string subject = 2;
+  string sender = 3;
+  int32 recipients_to = 4;
+  int32 recipients_cc = 5;
+  int32 recipients_bcc = 6;
+  int32 reply_number_in_chain = 7;
+  string passive_aggression_level = 8;
+  string actual_point = 9;
+  string closing = 10;
+  string time_sent = 11;
+  bool read_receipts_requested = 12;
+  string contains_the_phrase = 13;
+}
+
+message ListEmailsResponse {
+  repeated Email items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- OKRs ---
+
+message Okr {
+  int32 id = 1;
+  string quarter = 2;
+  int32 year = 3;
+  string objective = 4;
+  string key_result = 5;
+  string owner = 6;
+  string progress = 7;
+  bool achieved = 8;
+  string excuse = 9;
+  int32 carried_forward_count = 10;
+  string confidence_level = 11;
+  string last_reviewed = 12;
+}
+
+message ListOkrsResponse {
+  repeated Okr items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Corporate Employees ---
+
+message CorporateEmployee {
+  int32 id = 1;
+  string name = 2;
+  string title = 3;
+  int32 years_at_company = 4;
+  int32 direct_reports = 5;
+  string manager = 6;
+  string skip_level_manager = 7;
+  string soul_remaining = 8;
+  int32 hours_per_week_in_meetings = 9;
+  int32 vacation_days_used_this_year = 10;
+  int32 vacation_days_accrued = 11;
+  bool linkedin_looking = 12;
+  string last_genuine_laugh_at_work = 13;
+  string favorite_meeting_excuse = 14;
+}
+
+message ListEmployeesResponse {
+  repeated CorporateEmployee items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Expenses ---
+
+message Expense {
+  int32 id = 1;
+  string submitted_by = 2;
+  string category = 3;
+  string amount = 4;
+  string description = 5;
+  bool receipt_attached = 6;
+  string approved = 7;
+  string approver_comment = 8;
+  int32 days_in_reimbursement_purgatory = 9;
+}
+
+message ListExpensesResponse {
+  repeated Expense items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}

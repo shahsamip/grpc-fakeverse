@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package fakeverse.multiverse;
+
+message ListRequest {
+  int32 page_size = 1;
+  int32 page = 2;
+  optional int32 seed = 3;
+}
+
+message GetByIdRequest {
+  int32 id = 1;
+}
+
+service Multiverse {
+  rpc ListPersons (ListRequest) returns (ListPersonsResponse);
+  rpc GetPerson (GetByIdRequest) returns (Person);
+  rpc ListUniverses (ListRequest) returns (ListUniversesResponse);
+  rpc GetUniverse (GetByIdRequest) returns (Universe);
+  rpc ListTimelines (ListRequest) returns (ListTimelinesResponse);
+  rpc GetTimeline (GetByIdRequest) returns (Timeline);
+  rpc ListAnomalies (ListRequest) returns (ListAnomaliesResponse);
+  rpc GetAnomaly (GetByIdRequest) returns (Anomaly);
+}
+
+// --- Persons ---
+
+message Person {
+  int32 id = 1;
+  string name = 2;
+  string universe = 3;
+  string occupation = 4;
+  string universe_divergence = 5;
+  string fun_fact = 6;
+  string nemesis = 7;
+  string current_mood = 8;
+  string timeline_stability = 9;
+}
+
+message ListPersonsResponse {
+  repeated Person items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Universes ---
+
+message Universe {
+  int32 id = 1;
+  string universe_id = 2;
+  string key_difference = 3;
+  string stability = 4;
+  string population = 5;
+  string age_in_years = 6;
+  int32 known_anomalies = 7;
+  string diverged_from = 8;
+  int32 divergence_year = 9;
+  bool recommended_for_visiting = 10;
+  string travel_advisory = 11;
+}
+
+message ListUniversesResponse {
+  repeated Universe items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Timelines ---
+
+message Timeline {
+  int32 id = 1;
+  string timeline_id = 2;
+  int32 divergence_year = 3;
+  string caused_by = 4;
+  string consequence = 5;
+  int32 affected_universe_count = 6;
+  bool resolved = 7;
+  string resolution_method = 8;
+  string paradox_risk = 9;
+}
+
+message ListTimelinesResponse {
+  repeated Timeline items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Anomalies ---
+
+message Anomaly {
+  int32 id = 1;
+  string type = 2;
+  string affected_area = 3;
+  bool threat_to_fabric_of_reality = 4;
+  string discovered_by = 5;
+  string duration = 6;
+  string severity = 7;
+  string recommended_action = 8;
+  bool currently_contained = 9;
+}
+
+message ListAnomaliesResponse {
+  repeated Anomaly items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}

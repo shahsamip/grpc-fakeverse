@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+package fakeverse.villain_hq;
+
+message ListRequest {
+  int32 page_size = 1;
+  int32 page = 2;
+  optional int32 seed = 3;
+}
+
+message GetByIdRequest {
+  int32 id = 1;
+}
+
+service VillainHQ {
+  rpc ListVillains (ListRequest) returns (ListVillainsResponse);
+  rpc GetVillain (GetByIdRequest) returns (Villain);
+  rpc ListHenchmen (ListRequest) returns (ListHenchmenResponse);
+  rpc GetHenchman (GetByIdRequest) returns (Henchman);
+  rpc ListHeists (ListRequest) returns (ListHeistsResponse);
+  rpc GetHeist (GetByIdRequest) returns (Heist);
+  rpc ListLairs (ListRequest) returns (ListLairsResponse);
+  rpc GetLair (GetByIdRequest) returns (Lair);
+  rpc ListHeroes (ListRequest) returns (ListHeroesResponse);
+  rpc GetHero (GetByIdRequest) returns (Hero);
+}
+
+// --- Villains ---
+
+message Villain {
+  int32 id = 1;
+  string name = 2;
+  string evil_plan = 3;
+  string evil_plan_status = 4;
+  string lair = 5;
+  int32 henchmen_count = 6;
+  string threat_level = 7;
+  string weakness = 8;
+  string arch_nemesis = 9;
+  string success_probability = 10;
+  int32 previous_plans_foiled = 11;
+  string motivation = 12;
+}
+
+message ListVillainsResponse {
+  repeated Villain items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Henchmen ---
+
+message Henchman {
+  int32 id = 1;
+  string name = 2;
+  string disguise = 3;
+  int32 loyalty_score = 4;
+  int32 days_employed = 5;
+  string last_betrayal = 6;
+  repeated string skills = 7;
+  string hourly_rate = 8;
+  string uniform_complaint = 9;
+}
+
+message ListHenchmenResponse {
+  repeated Henchman items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Heists ---
+
+message Heist {
+  int32 id = 1;
+  string target = 2;
+  string mastermind = 3;
+  int32 henchmen_deployed = 4;
+  string estimated_value = 5;
+  string success_probability = 6;
+  string actual_outcome = 7;
+  string went_wrong = 8;
+  string escape_vehicle = 9;
+  int32 duration_minutes = 10;
+}
+
+message ListHeistsResponse {
+  repeated Heist items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Lairs ---
+
+message Lair {
+  int32 id = 1;
+  string location = 2;
+  string codename = 3;
+  int32 square_footage = 4;
+  repeated string amenities = 5;
+  string security_rating = 6;
+  bool ikea_furnished = 7;
+  bool self_destruct_button = 8;
+  string monthly_rent = 9;
+  string lair_rating = 10;
+}
+
+message ListLairsResponse {
+  repeated Lair items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// --- Heroes ---
+
+message Hero {
+  int32 id = 1;
+  string name = 2;
+  string catchphrase = 3;
+  string superpower = 4;
+  string weakness = 5;
+  string arch_nemesis = 6;
+  int32 cases_solved = 7;
+  string win_rate = 8;
+  string preferred_entry = 9;
+  string day_job = 10;
+}
+
+message ListHeroesResponse {
+  repeated Hero items = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}

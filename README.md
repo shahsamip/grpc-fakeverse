@@ -160,8 +160,3 @@ lib/
 
 The `.proto` files are in the `proto/` directory. Because the server has **gRPC reflection** enabled, you don't need them to make calls — tools like `grpcurl`, Postman, and Kreya will auto-discover all services and message shapes.
 
----
-
-## License
-
-MIT

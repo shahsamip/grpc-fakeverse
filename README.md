@@ -156,6 +156,64 @@ lib/
 
 ---
 
+## All RPCs — Silicon Valley BS (complete example)
+
+Every service follows the same pattern. Here's every single call for `fakeverse.silicon_valley.SiliconValley` so you can see exactly what's possible:
+
+```bash
+# ── Startups ──────────────────────────────────────────────────────────────────
+
+grpcurl -plaintext -d '{"page_size": 5, "page": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/ListStartups
+
+grpcurl -plaintext -d '{"id": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/GetStartup
+
+# ── Employees ─────────────────────────────────────────────────────────────────
+
+grpcurl -plaintext -d '{"page_size": 5, "page": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/ListEmployees
+
+grpcurl -plaintext -d '{"id": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/GetEmployee
+
+# ── Investors ─────────────────────────────────────────────────────────────────
+
+grpcurl -plaintext -d '{"page_size": 5, "page": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/ListInvestors
+
+grpcurl -plaintext -d '{"id": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/GetInvestor
+
+# ── Pivots ────────────────────────────────────────────────────────────────────
+
+grpcurl -plaintext -d '{"page_size": 5, "page": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/ListPivots
+
+grpcurl -plaintext -d '{"id": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/GetPivot
+
+# ── Products ──────────────────────────────────────────────────────────────────
+
+grpcurl -plaintext -d '{"page_size": 5, "page": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/ListProducts
+
+grpcurl -plaintext -d '{"id": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/GetProduct
+
+# ── Standups ──────────────────────────────────────────────────────────────────
+
+grpcurl -plaintext -d '{"page_size": 5, "page": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/ListStandups
+
+grpcurl -plaintext -d '{"id": 1}' \
+  localhost:50051 fakeverse.silicon_valley.SiliconValley/GetStandup
+```
+
+The other three services (`VillainHQ`, `CorporateHell`, `Multiverse`) work identically — just swap the package, service name, and resource. See the [interactive docs](https://fakeverse-grpc.vercel.app) for copy-paste commands for every RPC.
+
+---
+
 ## Proto files
 
 The `.proto` files are in the `proto/` directory. Because the server has **gRPC reflection** enabled, you don't need them to make calls — tools like `grpcurl`, Postman, and Kreya will auto-discover all services and message shapes.
